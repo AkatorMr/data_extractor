@@ -1,0 +1,5 @@
+test/
+DataExtractor/bin/
+DataExtractor/*.sln
+DataExtractor/obj/
+DataExtractor/Properties/
