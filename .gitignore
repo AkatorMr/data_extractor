@@ -3,3 +3,4 @@ DataExtractor/bin/
 DataExtractor/*.sln
 DataExtractor/obj/
 DataExtractor/Properties/
+.vscode/*.json

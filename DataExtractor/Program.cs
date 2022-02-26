@@ -23,9 +23,13 @@ namespace DataExtractor
             {
                 FileInfo info = new FileInfo(file);
                 // Do something with the Folder or just add them to a list via nameoflist.add();
-                String pa = info.Directory.ToString();
+                String pa;
+                
+                pa = info.FullName.ToString();
+                
                 pa=pa.Replace(execPath,"");
-                Console.WriteLine("\\"+pa+"\\"+info.Name.ToString());
+                //Console.WriteLine(execPath);
+                Console.WriteLine(pa);
             }
             
             /* for (int i = 0; i < args.Length; i++)
