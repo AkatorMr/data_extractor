@@ -1,6 +1,8 @@
 test/
 DataExtractor/bin/
 DataExtractor/*.sln
+DataExtractor/*.user
+DataExtractor/*.suo
 DataExtractor/obj/
 DataExtractor/Properties/
 .vscode/*.json

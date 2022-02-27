@@ -4,19 +4,21 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Diagnostics;
+using System.Collections;
+
 
 namespace DataExtractor
 {
     class Program
     {
-        private static Process process;
-
-        //exiftool -XPComment="new comment2" test2.jpg   
+        static ArrayList atab = new ArrayList();
 
         static void Main(string[] args)
         {
             String execPath = AppDomain.CurrentDomain.BaseDirectory;
 
+
+            Console.WriteLine(execPath);
 
             string[] allfiles = Directory.GetFiles(execPath, "*", SearchOption.AllDirectories);
             foreach (var file in allfiles)
@@ -28,8 +30,26 @@ namespace DataExtractor
                 pa = info.FullName.ToString();
                 
                 pa=pa.Replace(execPath,"");
-                //Console.WriteLine(execPath);
-                Console.WriteLine(pa);
+                if(pa.EndsWith(".jpg")){
+                    //Console.WriteLine(execPath);
+                    atab.Add(new Tablero(execPath,pa));
+                    Console.WriteLine(pa);
+                }
+            }
+            int i = 0;
+
+            JpegMetaAdapter jma;
+
+            foreach (Tablero item in atab)
+            {
+                Console.WriteLine(item.getText());
+                jma = new JpegMetadataAdapter(item.getFilePath());
+                //jma = new JpegMetaInsert(item.getFilePath());
+                jma.SetComment(item.getText());
+                jma.Save();
+                i++;
+                //if(i>10)
+                //break;
             }
             
             /* for (int i = 0; i < args.Length; i++)
@@ -40,18 +60,10 @@ namespace DataExtractor
             } */
 
             Console.WriteLine("Operación completa");
+            Console.ReadKey();
         }
 
-        private static void AgregarNota(string v1, string v2)
-        {
-            Console.WriteLine(v1);
-            process = new Process();
-            process.StartInfo.FileName = "exiftool.exe";
-            process.StartInfo.Arguments = "-XPComment=\"" + v2 + "\" \"" + v1 + "\"";
-
-            process.Start();
-            process.WaitForExit();
-        }
+        
 
         private static void GetBinData(string execPath, string p)
         {
