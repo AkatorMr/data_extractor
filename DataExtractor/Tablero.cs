@@ -17,7 +17,7 @@ namespace DataExtractor
             for (int i = 0; i < t.Length-1; i++)
             {
                 sb.Append(t[i]);
-                sb.Append("\\");
+                sb.Append("\n");
             }
             this.Path = sb.ToString();
 
