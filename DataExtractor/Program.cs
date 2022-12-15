@@ -16,7 +16,7 @@ namespace DataExtractor
         static void Main(string[] args)
         {
             String execPath = AppDomain.CurrentDomain.BaseDirectory;
-
+            execPath = Environment.CurrentDirectory;
 
             Console.WriteLine(execPath);
 
